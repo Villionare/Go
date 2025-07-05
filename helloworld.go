@@ -1,10 +1,16 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+)
+
+func firstFunction(param string){
+	fmt.Println("this is my First Go function" , param);
+}
 
 // const NAME = "abhay";
 
-var new string = "pom";
+// var new string = "pom";
 //Can be used inside and outside of functions
 //Variable declaration and value assignment can be done separately
 
@@ -90,8 +96,182 @@ func main() {
 	fmt.Println(arr1);
 	fmt.Println("The size of the array is: ",len(arr1));
 
+	//SLICES IN Go
+	//slices are just like arrays and are more flexible
+	//However, unlike arrays, the length of a slice can grow and shrink as you see fit.
+
+	//In Go, there are several ways to create a slice:
+
+	// Using the []datatype{values} format
+	// Create a slice from an array
+	// Using the make() function
 	
+	fmt.Println("Creating the first Slice:");
+	firstSlice := []int{3,4,5,6,7,7};
+	fmt.Println(cap(firstSlice)); //- printing the capacity
+	fmt.Println(len(firstSlice)); //- length 
+	fmt.Println(firstSlice);
+	fmt.Println(firstSlice[2]);
+	fmt.Println(firstSlice[1]);
+	fmt.Println(firstSlice[0]);
+
+	//Creating a slice from an array:
+	//var myarray = [length]datatype{values} // An array
+	//myslice := myarray[start:end] - A slice made from the array
+
+	//creating a slice using make() function:- 
+	// slice_name := make([]type, length, capacity)
+	makeSlice := make([]int, 5, 10);
+	fmt.Println(makeSlice);
+	fmt.Println(cap(makeSlice));
+	fmt.Println(len(makeSlice));
+
+	//Appending elements to a slice:
+	//slice_name = append(slice_name, element1, element2, ...)
+
+	//Append one slice to another
+	//slice3 = append(slice1, slice2...)
+	//Note: The '...' after slice2 is necessary when appending the elements of one slice to another.
+	myslice1 := []int{1,2,3}
+	myslice2 := []int{4,5,6}
+	myslice3 := append(myslice1, myslice2...)
+
+	fmt.Printf("myslice3=%v\n", myslice3)
+	fmt.Printf("length=%d\n", len(myslice3))
+	fmt.Printf("capacity=%d\n", cap(myslice3))
+
+
+	// Memory Efficiency
+	//When using slices, Go loads all the underlying elements into the memory.
+	//If the array is large and you need only a few elements, it is better to copy those elements using the copy() function.
+	//The copy() function creates a new underlying array with only the required elements for the slice. This will reduce the memory used for the program. 
+	//copy(dest, src)
+
+	fmt.Println("copy() function");
+	tempArray := [10]int{1,2,3,4,5,6,7,8,9,10}
+	fmt.Println(tempArray);
+
+	//creating a slice
+	tempSlice := []int{11,22,33,44,55}
+	fmt.Println(tempSlice);
+
+	//convert an array into a slice 
+	convertedSlice := tempArray[1:5];
+	// fmt.Println(convertedSlice);
+
+	//copy the elements of converted slice into temp Slice
+	newSlice := make([]int, len(convertedSlice));
+	
+	copy(newSlice, convertedSlice); //we have put the elements of convertedSlice into newSlice, which eas empty
+	fmt.Println(newSlice);
+
+	//Go Operators
+	//Arthematic Operators
+	//Assignment Operators
+	//Comparision Operators
+	//Logical Operators
+	//Bitwise Operators
+	
+
+	//Go Conditionals
+	//if 
+	//if - else 
+	//else if 
+	//nested if 
+	
+
+	//switchs in Go:
+	 day := 4
+
+  switch day {
+  case 1:
+    fmt.Println("Monday")
+  case 2:
+    fmt.Println("Tuesday")
+  case 3:
+    fmt.Println("Wednesday")
+  case 4:
+    fmt.Println("Thursday")
+  case 5:
+    fmt.Println("Friday")
+  case 6:
+    fmt.Println("Saturday")
+  case 7:
+    fmt.Println("Sunday")
+  default:
+	fmt.Println("this is the default")
+  }
+
+  //mutli-case switch:
+	newday := 7
+
+   switch newday {
+   case 1,3,5:
+    fmt.Println("Odd weekday")
+   case 2,4:
+     fmt.Println("Even weekday")
+   case 6,7:
+    fmt.Println("Weekend")
+  default:
+    fmt.Println("Invalid day of day number")
+  }
+
+  //loops in Go:
+  //everything is common aside new 'range' keyword:
+  justSomething := []int{3,4,5,6,7,8,9,0} 
+  for i, val := range justSomething {
+	fmt.Println(i, val)
+  }
+
+  firstFunction("just a paramenter");
+
+  var a int = th();
+  fmt.Println(a);
+
+
+   //Go structures:
+  //A struct (short for structure) is used to create a collection of members of different data types, into a single variable.
+ //While arrays are used to store multiple values of the same data type into a single variable, structs are used to store multiple values of different data types into a single variable.
+//A struct can be useful for grouping data together to create records.
+
+type Person struct {
+  name string
+  age int
+  job string
+  salary int
 }
+
+  var pers1 Person
+  var pers2 Person
+
+  // Pers1 specification
+  pers1.name = "Hege"
+  pers1.age = 45
+  pers1.job = "Teacher"
+  pers1.salary = 6000
+
+  // Pers2 specification
+  pers2.name = "Cecilie"
+  pers2.age = 24
+  pers2.job = "Marketing"
+  pers2.salary = 4500
+
+  // Access and print Pers1 info
+  fmt.Println("Name: ", pers1.name)
+  fmt.Println("Age: ", pers1.age)
+  fmt.Println("Job: ", pers1.job)
+  fmt.Println("Salary: ", pers1.salary)
+
+  // Access and print Pers2 info
+  fmt.Println("Name: ", pers2.name)
+  fmt.Println("Age: ", pers2.age)
+  fmt.Println("Job: ", pers2.job)
+  fmt.Println("Salary: ", pers2.salary)
+
+  //Go Maps:
+}
+
+
 
 //go mod init example.com/hello
 //go run .\helloworld.go     
